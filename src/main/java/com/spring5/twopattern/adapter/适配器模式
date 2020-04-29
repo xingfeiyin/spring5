@@ -1,0 +1,13 @@
+优缺点：
+优点：1、能提高类的透明性和复用性，现有的类会被复用但不会改变
+2、目标类和适配器类解耦，可以提高程序的扩展性
+3、在很多业务场景中符合开闭原则
+
+缺点：
+1、在适配器代码编写过程中需要进行全面考虑，可能会增加系统的复杂性。
+2、增加了代码的阅读难度，降低了代码的可读性，过多的使用适配器模式会使代码的逻辑变得凌乱。
+
+适配器模式在源码中的体现
+1、springAOP中的AdvisorAdapter类，它有三个实现类
+MethodBeforeAdviceAdapter/AfterReturningAdviceAdapter/ThrowsAdviceAdapter
+2、SpringMVC中的HandlerAdapter类，有多个子类

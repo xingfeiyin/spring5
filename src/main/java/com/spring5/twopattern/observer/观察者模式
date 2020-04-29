@@ -1,0 +1,11 @@
+观察者模式的优缺点：
+优点：
+1、在观察者和被观察者之间建立了一个抽象的耦合
+2、观察者模式支持广播通信
+缺点：
+1、观察者之间有过多的细节依赖、时间消耗多，程序的复杂性更高
+2、使用不当会出现循环调用
+
+观察者模式在源码中的应用
+spring中的ContextLoaderListener类实现了ServletContextListener接口，ServletContextListener
+接口又继承了EventListener接口，

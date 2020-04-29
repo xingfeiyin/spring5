@@ -1,0 +1,15 @@
+装饰者模式的优缺点
+优点：
+1、装饰者模式是继承的有力补充，且比继承灵活，可以在不改变原有对象的情况下动态的给对象扩展功能，
+    即插即用
+2、使用不同的装饰类及这些装饰类的排列组合，可以实现不同的效果
+3、装饰者模式完全符合开闭原则。
+缺点：
+1、会出现更多的代码，更多的类，增加程序的复杂性
+2、动态装饰时，多层装饰会更复杂
+
+装饰者模式在源码中的应用
+JDK中I/O相关的类，如BufferedReader、InputStream、OutputStream。
+spring中的TransactionAwareCacheDecorator类，主要用来处理事务缓存。
+springMVC中的HttpHeadResponseDecorator
+mybatis中的Cache类
