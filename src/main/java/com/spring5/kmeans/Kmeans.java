@@ -3,11 +3,7 @@ package com.spring5.kmeans;
 import java.util.ArrayList;
 import java.util.Random;
 
-/**
- * @author yinxf
- * @Date 2020/5/9
- * @Description
- **/
+
 public class Kmeans {
     private int numOfCluster;// 分成多少簇
     private int timeOfIteration;// 迭代次数
@@ -57,34 +53,11 @@ public class Kmeans {
     private void init() {
         timeOfIteration = 0;
         random = new Random();
-        //如果调用者未初始化数据集，则采用内部测试数据集
-//        if (dataSet == null || dataSet.size() == 0) {
-//            initDataSet();
-//        }
         dataSetLength = dataSet.size();
-        //若numOfCluster大于数据源的长度时，置为数据源的长度
-//        if (numOfCluster > dataSetLength) {
-//            numOfCluster = dataSetLength;
-//        }
         center = initCenters();
         cluster = initCluster();
         sumOfErrorSquare = new ArrayList<Float>();
     }
-
-    /**
-     * 如果调用者未初始化数据集，则采用内部测试数据集
-     */
-//    private void initDataSet() {
-//        dataSet = new ArrayList<float[]>();
-//        // 其中{6,3}是一样的，所以长度为15的数据集分成14簇和15簇的误差都为0
-//        float[][] dataSetArray = new float[][] { { 8, 2 }, { 3, 4 }, { 2, 5 },
-//                { 4, 2 }, { 7, 3 }, { 6, 2 }, { 4, 7 }, { 6, 3 }, { 5, 3 },
-//                { 6, 3 }, { 6, 9 }, { 1, 6 }, { 3, 9 }, { 4, 1 }, { 8, 6 } };
-//
-//        for (int i = 0; i < dataSetArray.length; i++) {
-//            dataSet.add(dataSetArray[i]);
-//        }
-//    }
 
     /**
      * 初始化中心数据链表，分成多少簇就有多少个中心点
@@ -117,9 +90,10 @@ public class Kmeans {
             randoms[i] = temp;
         }
 
-
+        //把randoms中三个下标对应的点，放到中心链表中。
         for (int i = 0; i < numOfCluster; i++) {
             center.add(dataSet.get(randoms[i]));// 生成初始化中心链表
+            System.out.println("初始化中心点"+i+":"+dataSet.get(randoms[i])[0] +","+ dataSet.get(randoms[i])[1]);
         }
         return center;
     }
@@ -183,13 +157,12 @@ public class Kmeans {
         float[] distance = new float[numOfCluster];
         for (int i = 0; i < dataSetLength; i++) {
             for (int j = 0; j < numOfCluster; j++) {
+                //计算对象到中心点的距离
                 distance[j] = distance(dataSet.get(i), center.get(j));
-                // System.out.println("test2:"+"dataSet["+i+"],center["+j+"],distance="+distance[j]);
             }
+            //获取最小距离的点
             int minLocation = minDistance(distance);
-            // System.out.println("test3:"+"dataSet["+i+"],minLocation="+minLocation);
-            // System.out.println();
-
+            //将遍历的对象点放到距离最近的中心点集合中
             cluster.get(minLocation).add(dataSet.get(i));// 核心，将当前元素放到最小距离中心相关的簇中
 
         }
@@ -221,10 +194,9 @@ public class Kmeans {
         for (int i = 0; i < cluster.size(); i++) {
             for (int j = 0; j < cluster.get(i).size(); j++) {
                 jcF += errorSquare(cluster.get(i).get(j), center.get(i));
-
             }
         }
-        sumOfErrorSquare.add(jcF);
+        sumOfErrorSquare.add(jcF); //记录误差值
     }
 
     /**
@@ -239,7 +211,7 @@ public class Kmeans {
                     newCenter[0] += cluster.get(i).get(j)[0];
                     newCenter[1] += cluster.get(i).get(j)[1];
                 }
-                // 设置一个平均值
+                // 设置一个平均值，把x的坐标加起来，Y的坐标加起来，求平均值，把平均值对应的点设置到新的中心集合中。
                 newCenter[0] = newCenter[0] / n;
                 newCenter[1] = newCenter[1] / n;
                 center.set(i, newCenter);
@@ -269,22 +241,13 @@ public class Kmeans {
      */
     private void kmeans() {
         init();
-        // printDataArray(dataSet,"initDataSet");
-        // printDataArray(center,"initCenter");
 
         // 循环分组，直到误差不变为止
         while (true) {
             clusterSet();
-            // for(int i=0;i<cluster.size();i++)
-            // {
-            // printDataArray(cluster.get(i),"cluster["+i+"]");
-            // }
 
             countRule();
 
-            // System.out.println("count:"+"sumOfErrorSquare["+timeOfIteration+"]="+sumOfErrorSquare.get(timeOfIteration));
-
-            // System.out.println();
             // 误差不变了，分组完成
             if (timeOfIteration != 0) {
                 if (sumOfErrorSquare.get(timeOfIteration) - sumOfErrorSquare.get(timeOfIteration - 1) == 0) {
@@ -292,14 +255,13 @@ public class Kmeans {
                 }
             }
 
+            //设置新的中心点
             setNewCenter();
-            // printDataArray(center,"newCenter");
             timeOfIteration++;
             cluster.clear();
             cluster = initCluster();
         }
 
-        // System.out.println("note:the times of repeat:timeOfIteration="+timeOfIteration);//输出迭代次数
     }
 
     /**

@@ -2,11 +2,7 @@ package com.spring5.kmeans;
 
 import java.util.ArrayList;
 
-/**
- * @author yinxf
- * @Date 2020/5/9
- * @Description
- **/
+
 public class KmeansTest {
     public  static void main(String[] args)
     {
