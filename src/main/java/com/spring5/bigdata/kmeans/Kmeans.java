@@ -1,4 +1,4 @@
-package com.spring5.kmeans;
+package com.spring5.bigdata.kmeans;
 
 import java.util.ArrayList;
 import java.util.Random;
