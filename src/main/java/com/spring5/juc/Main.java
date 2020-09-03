@@ -1,4 +1,4 @@
-package com.spring5.juc.threadlocal;
+package com.spring5.juc;
 
 /**
  * @author yinxf
