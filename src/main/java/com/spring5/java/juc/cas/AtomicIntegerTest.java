@@ -1,4 +1,4 @@
-package com.spring5.juc.cas;
+package com.spring5.java.juc.cas;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

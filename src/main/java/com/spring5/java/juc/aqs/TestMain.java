@@ -1,4 +1,4 @@
-package com.spring5.juc.aqs;
+package com.spring5.java.juc.aqs;
 
 /**
  * @author yinxf

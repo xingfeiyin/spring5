@@ -1,4 +1,4 @@
-package com.spring5.juc;
+package com.spring5.java.juc;
 
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;

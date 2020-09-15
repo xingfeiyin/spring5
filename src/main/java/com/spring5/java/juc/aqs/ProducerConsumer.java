@@ -1,4 +1,4 @@
-package com.spring5.juc.aqs;
+package com.spring5.java.juc.aqs;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
