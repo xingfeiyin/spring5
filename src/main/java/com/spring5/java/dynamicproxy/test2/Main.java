@@ -9,7 +9,12 @@ import java.io.*;
 /**
  * @author yinxf
  * @Date 2020/9/15
- * @Description
+ * @Description JDK动态代理
+ *
+ * 1、类加载器是干嘛的：JDK内部需要通过类加载作为缓存的key ； 需要类加载器生成class
+ * 2、为什么需要接口： 因为生成的代理类需要实现这个接口
+ * 3、为什么JDK动态代理只能代理接口： 因为生成的代理类已经继承了 Proxy类，java是单继承的，所以没法再继承一个类。
+ *
  **/
 public class Main {
     public static void main(String[] args) {
